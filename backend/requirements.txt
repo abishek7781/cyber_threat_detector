@@ -4,4 +4,12 @@ requests==2.32.3
 python-dotenv==1.1.0
 python-whois==0.8.0
 dnspython==2.6.1
-ipaddress==1.0.23 
+ipaddress==1.0.23
+aiohttp==3.9.3
+beautifulsoup4==4.12.3
+selenium==4.18.1
+webdriver-manager==4.0.1
+google-analytics-data==0.18.18
+google-auth==2.27.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0 

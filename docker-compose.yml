@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+    depends_on:
+      - mongodb
+    networks:
+      - cyberthreat-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5001
+    depends_on:
+      - backend
+    networks:
+      - cyberthreat-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - cyberthreat-network
+
+networks:
+  cyberthreat-network:
+    driver: bridge
+
+volumes:
+  mongodb_data: 
